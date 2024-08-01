@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "TodoapplicationApplication",
+            "request": "launch",
+            "mainClass": "com.hamzacicek.todoapplication.TodoapplicationApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TodoapplicationApplication<todoapplication>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.hamzacicek.todoapplication.TodoapplicationApplication",
+            "projectName": "todoapplication",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
