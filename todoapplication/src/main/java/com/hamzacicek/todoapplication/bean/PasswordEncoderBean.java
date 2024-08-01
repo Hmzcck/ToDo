@@ -1,4 +1,4 @@
-package main.java.com.hamzacicek.todoapplication.bean;
+package com.hamzacicek.todoapplication.bean;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package main.java.com.hamzacicek.todoapplication.bean;
+package com.hamzacicek.todoapplication.bean;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
