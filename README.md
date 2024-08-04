@@ -44,7 +44,6 @@ Spring Boot, React JS
 - Open Api Configuration
 - H2DB
 - MYSQL
-- POSTGRESQL
 - JAVA CORE
 - SPRING FRAMEWORK
 - SPRING BOOT
