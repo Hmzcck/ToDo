@@ -42,7 +42,7 @@ public class TaskControllerImpl implements ITaskController<TaskDto> {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<TaskDto> getTaskById(@PathVariable Long id) {
+    public ResponseEntity<TaskDto> getTaskById(@PathVariable(name = "id") Long id) {
         try {
             return ResponseEntity.ok(taskService.findById(id));
         } catch (NotFound404Exception e) {
@@ -52,7 +52,7 @@ public class TaskControllerImpl implements ITaskController<TaskDto> {
 
     @Override
     @PutMapping("/{id}")
-    public ResponseEntity<TaskDto> updateTaskById(@PathVariable Long id, @Valid @RequestBody TaskDto taskDto) {
+    public ResponseEntity<TaskDto> updateTaskById(@PathVariable(name = "id") Long id, @Valid @RequestBody TaskDto taskDto) {
         try {
             return ResponseEntity.ok(taskService.updateById(id, taskDto));
         } catch (NotFound404Exception e) {
@@ -62,7 +62,7 @@ public class TaskControllerImpl implements ITaskController<TaskDto> {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity<TaskDto> deleteTaskById(@PathVariable Long id) {
+    public ResponseEntity<TaskDto> deleteTaskById(@PathVariable(name = "id") Long id) {
         try {
             return ResponseEntity.ok(taskService.deleteById(id));
         } catch (NotFound404Exception e) {
@@ -72,7 +72,7 @@ public class TaskControllerImpl implements ITaskController<TaskDto> {
 
     @Override
     @PostMapping("/seed/{count}")
-    public ResponseEntity<String> seedData(@PathVariable Integer count) {
+    public ResponseEntity<String> seedData(@PathVariable(name = "count") Integer count) {
         return ResponseEntity.ok(taskService.seedData(count));
     }
 
