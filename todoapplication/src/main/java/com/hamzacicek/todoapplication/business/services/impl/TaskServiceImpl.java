@@ -13,6 +13,7 @@ import com.hamzacicek.todoapplication.business.dto.TaskDto;
 import com.hamzacicek.todoapplication.business.services.ITaskService;
 import com.hamzacicek.todoapplication.data.entity.TaskEntity;
 import com.hamzacicek.todoapplication.data.repository.TaskRepository;
+import com.hamzacicek.todoapplication.exception.BadRequest400Exception;
 import com.hamzacicek.todoapplication.exception.NotFound404Exception;
 
 import lombok.RequiredArgsConstructor;
@@ -113,6 +114,13 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
     public TaskDto updateById(Long id, TaskDto taskDto) {
         TaskDto taskDtoToFind = findById(id);
         if (taskDtoToFind != null) {
+            // Check if another task with the same title exists
+            TaskEntity existingTask = taskRepository.findByTitle(taskDto.getTitle());
+            if (existingTask != null && !existingTask.getId().equals(id)) {
+                log.error("Title must be unique, task with title '{}' already exists", taskDto.getTitle());
+                throw new BadRequest400Exception("Title must be unique");
+            }
+            
             TaskEntity taskEntity = dtoToEntity(taskDtoToFind);
             taskEntity.setTitle(taskDto.getTitle());
             taskEntity.setDescription(taskDto.getDescription());
