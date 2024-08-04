@@ -87,6 +87,9 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
             taskRepository.save(taskEntity);
             taskDto.setId(taskEntity.getId());
             taskDto.setCreatedAt(taskEntity.getCreatedAt());
+            if(taskEntity.getDueDate() == null) {
+                taskDto.setDueDate(LocalDate.now());
+            }
             log.info("Task saved with title: {}", taskDto.getTitle());
         } else {
             throw new NullPointerException("Task is null.");
