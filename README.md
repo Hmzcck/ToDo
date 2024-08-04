@@ -10,12 +10,12 @@ git clone https://github.com/Hmzcck/ToDo.git
 ## _N-Tier Architecture_
 
 ---
-## To-Do Project:
+## ToDo Project:
 Spring Boot, React JS
 
 - Backend: Java Core, Spring Framework
 - Frontend:  React JS, JS, +ES5
-- 🎁 To-Do
+- 🎁 ToDo
 --- 
 
 ## TECHNOLOGY && Features
@@ -143,7 +143,7 @@ for project , Port
 
 ## License
 
-**BLOG PROJECT !**
+**ToDo PROJECT !**
 
 [//]: # (Variable)
 [RTool]: <https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi>
