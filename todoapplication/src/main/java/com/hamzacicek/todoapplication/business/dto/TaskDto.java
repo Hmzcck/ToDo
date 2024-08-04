@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
+import com.hamzacicek.todoapplication.annotation.UniqueTitle;
+
 // LOMBOK
 @Data
 @AllArgsConstructor
@@ -29,6 +31,7 @@ public class TaskDto implements Serializable {
 
     @NotEmpty(message = "{task.title.validation.constraints.NotEmpty.message}")
     @Size(min = 1, max = 255, message = "{task.title.validation.constraints.Size.message}")
+    @UniqueTitle
     private String title;
 
     @Size(max = 1000, message = "{task.description.validation.constraints.Size.message}")

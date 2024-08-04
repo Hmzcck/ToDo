@@ -27,7 +27,7 @@ public class TaskEntity implements Serializable {
     @Column(name = "task_id", unique = true, nullable = false, updatable = false)
     private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = 255, unique = true)
     private String title;
 
     @Column(length = 1000)

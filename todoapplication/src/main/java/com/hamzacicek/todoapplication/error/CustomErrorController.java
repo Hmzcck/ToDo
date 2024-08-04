@@ -32,7 +32,7 @@ public class CustomErrorController implements ErrorController {
     private Integer status;
     private String message;
     private String path;
-    private Map<String, String> validationErrors = new HashMap<>();
+    private Map<String, String> validationErrors;
 
 
     private ApiResult apiResult;
@@ -57,9 +57,8 @@ public class CustomErrorController implements ErrorController {
 
 
         if (attributes.containsKey("errors")) {
-            BindingResult bindingResult = (BindingResult) attributes.get("errors");
-            List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
-
+            List<FieldError> fieldErrorList= (List<FieldError>) attributes.get("errors");
+            validationErrors=new HashMap<>();
 
             for (FieldError fieldError : fieldErrorList) {
                 validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
