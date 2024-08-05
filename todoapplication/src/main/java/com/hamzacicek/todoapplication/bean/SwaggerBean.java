@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// Swagger Configuration
 @Configuration
 public class SwaggerBean {
 
@@ -13,6 +14,7 @@ public class SwaggerBean {
         return new OpenAPI().info(new Info()
                 .title("To-Do Application")
                 .version("V1.0.0")
-                .description("Spring Boot & React Js & MySQL"));
-    }
-}
+                .description("Spring Boot & React Js & MySQL")
+        );// end return new OpenAPI
+    }// end method customOpenAPI
+}// end class SwaggerBean Class

@@ -65,7 +65,7 @@ public class CustomErrorController implements ErrorController {
             }
 
             apiResult.setValidationErrors(validationErrors);
-        }
+        }// end if
 
         return apiResult;
     } //end method

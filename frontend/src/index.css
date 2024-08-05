@@ -1,26 +1,30 @@
+/* Set the base styles for the body element */
 body {
-  margin: 0;
+  margin: 0; /* Remove default margin */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f9fa;
+    sans-serif; /* Set the font family for the body */
+  -webkit-font-smoothing: antialiased; /* Improve font rendering on WebKit-based browsers */
+  -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+  background-color: #f8f9fa; /* Set the background color */
 }
 
+/* Styles for the list group item */
 .list-group-item {
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  background-color: #fff; /* Set the background color to white */
+  border: 1px solid rgba(0, 0, 0, 0.125); /* Add a border with slight transparency */
+  border-radius: 0.25rem; /* Round the corners */
+  margin-bottom: 0.5rem; /* Add space between items */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Add a subtle shadow */
 }
 
+/* Hover effect for list group items */
 .list-group-item:hover {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; /* Change background color on hover */
 }
 
+/* Style for the checkbox input when checked, applied to the following span element */
 .form-check-input:checked + span {
-  text-decoration: line-through;
-  color: #6c757d;
+  text-decoration: line-through; /* Strike through text */
+  color: #6c757d; /* Change text color */
 }

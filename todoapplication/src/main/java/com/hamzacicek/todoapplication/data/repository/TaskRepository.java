@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TaskRepository extends JpaRepository<TaskEntity, Long> {
+    // Check if a task exists by title
     boolean existsByTitle(String title);
 
+    // Find a task by title
     TaskEntity findByTitle(String title);
 }

@@ -27,19 +27,23 @@ import lombok.extern.log4j.Log4j2;
 @Service
 public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
 
+    // Dependency Injection
     private final TaskRepository taskRepository;
     private final ModelMapperBean modelMapperBean;
 
+    // Entity to DTO
     @Override
     public TaskDto entityToDto(TaskEntity taskEntity) {
         return modelMapperBean.getModelMapper().map(taskEntity, TaskDto.class);
-    }
+    }// end method
 
+    // DTO to Entity
     @Override
     public TaskEntity dtoToEntity(TaskDto taskDto) {
         return modelMapperBean.getModelMapper().map(taskDto, TaskEntity.class);
-    }
+    }// end method
 
+    // Seed Data
     @Override
     @Transactional
     public String seedData(Integer count) {
@@ -52,22 +56,24 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
                         .dueDate(LocalDate.now().plusDays(i))
                         .build();
                 taskRepository.save(taskEntity);
-            }
+            }// end for
         } else {
             throw new NullPointerException("Count cannot be null");
-        }
+        }// end if
         log.info("{} new data seeded.", count);
         return count + " new data seeded.";
-    }
+    }// end method
 
+    // Delete All
     @Override
     @Transactional
     public String deleteAll() {
         taskRepository.deleteAll();
         log.info("Deleted all records successfully.");
         return "Deleted all records successfully.";
-    }
+    }// end method
 
+    // List All
     @Override
     public List<TaskDto> listAll() {
         Iterable<TaskEntity> entityIterable = taskRepository.findAll();
@@ -75,11 +81,13 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
         for (TaskEntity entity : entityIterable) {
             TaskDto taskDto = entityToDto(entity);
             taskDtoList.add(taskDto);
-        }
+        }// end for
         log.info("Task count: {}", taskDtoList.size());
         return taskDtoList;
-    }
+    }// end method
 
+    // CRUD
+    // Create
     @Override
     @Transactional
     public TaskDto save(TaskDto taskDto) {
@@ -94,10 +102,11 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
             log.info("Task saved with title: {}", taskDto.getTitle());
         } else {
             throw new NullPointerException("Task is null.");
-        }
+        }// end if
         return taskDto;
-    }
+    }// end method
 
+    // Read
     @Override
     public TaskDto findById(Long id) {
         Optional<TaskEntity> findOptionalTaskEntity = taskRepository.findById(id);
@@ -106,9 +115,10 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
         } else {
             log.error("Task not found with id: {}", id);
             throw new NotFound404Exception("Task not found with id: " + id);
-        }
-    }
+        }// end if
+    }// end method
 
+    // Update
     @Override
     @Transactional
     public TaskDto updateById(Long id, TaskDto taskDto) {
@@ -119,7 +129,7 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
             if (existingTask != null && !existingTask.getId().equals(id)) {
                 log.error("Title must be unique, task with title '{}' already exists", taskDto.getTitle());
                 throw new BadRequest400Exception("Title must be unique");
-            }
+            }// end if
             
             TaskEntity taskEntity = dtoToEntity(taskDtoToFind);
             taskEntity.setTitle(taskDto.getTitle());
@@ -132,9 +142,10 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
         } else {
             log.error("Task not found with id: {}", id);
             throw new NotFound404Exception("Task not found with id: " + id);
-        }
-    }
+        }// end if
+    }// end method
 
+    // Delete
     @Override
     @Transactional
     public TaskDto deleteById(Long id) {
@@ -145,7 +156,7 @@ public class TaskServiceImpl implements ITaskService<TaskDto, TaskEntity> {
         } else {
             log.error("Task not found with id: {}", id);
             throw new NotFound404Exception("Task not found with id: " + id);
-        }
+        }// end if
         return taskDtoToFind;
-    }
-}
+    }// end method
+}// end class

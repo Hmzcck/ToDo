@@ -18,6 +18,7 @@ import java.util.Map;
 @Builder
 @Log4j2
 
+// Jackson
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResult {
 

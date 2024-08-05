@@ -3,7 +3,7 @@ package com.hamzacicek.todoapplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// Spring Security: Şimdilik dahil etme ancak Spring security için gerekli kütüphaneleri dahil
+// Prevent Login Page
 @SpringBootApplication(exclude = {
         //SecurityAutoConfiguration.class,
         org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,

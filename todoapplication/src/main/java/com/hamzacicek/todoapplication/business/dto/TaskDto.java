@@ -25,25 +25,32 @@ import java.util.Date;
 public class TaskDto implements Serializable {
     // id, title, description, status, due date, created at
 
+    // Serializable
     public static final long serialVersionUID = 1L;
 
+    // ID
     private Long id;
 
+    // Title
     @NotEmpty(message = "{task.title.validation.constraints.NotEmpty.message}")
     @Size(min = 1, max = 255, message = "{task.title.validation.constraints.Size.message}")
     // @UniqueTitle
     private String title;
 
+    // Description
     @Size(max = 1000, message = "{task.description.validation.constraints.Size.message}")
     private String description;
 
+    // Status
     @Builder.Default
     private Long status = 0L;
 
+    // Due Date
     @NotNull(message = "{task.dueDate.validation.constraints.NotNull.message}")
     @FutureOrPresent(message = "{task.dueDate.validation.constraints.FutureOrPresent.message}")
     private LocalDate dueDate;
 
+    // Created At
     @Builder.Default
     private Date createdAt = new Date(System.currentTimeMillis());
-}
+}// end class

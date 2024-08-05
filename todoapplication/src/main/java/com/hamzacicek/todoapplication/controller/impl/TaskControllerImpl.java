@@ -26,20 +26,38 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/task/api/v1")
 public class TaskControllerImpl implements ITaskController<TaskDto> {
 
+    // Dependency Injection
     private final ITaskService<TaskDto, TaskEntity> taskService;
-
+    // Data Seeding
     @Override
-    @PostMapping("/create")
-    public ResponseEntity<TaskDto> createTask(@Valid @RequestBody TaskDto taskDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.save(taskDto));
+    @PostMapping("/seed/{count}")
+    public ResponseEntity<String> seedData(@PathVariable(name = "count") Integer count) {
+        return ResponseEntity.ok(taskService.seedData(count));
     }
 
+    // Delete All
+    @Override
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<String> deleteAllTasks() {
+        return ResponseEntity.ok(taskService.deleteAll());
+    }
+
+    // List All
     @Override
     @GetMapping("/all")
     public ResponseEntity<List<TaskDto>> getAllTasks() {
         return ResponseEntity.ok(taskService.listAll());
     }
 
+    // CRUD
+    // Create
+    @Override
+    @PostMapping("/create")
+    public ResponseEntity<TaskDto> createTask(@Valid @RequestBody TaskDto taskDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.save(taskDto));
+    }
+
+    // Read
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<TaskDto> getTaskById(@PathVariable(name = "id") Long id) {
@@ -50,6 +68,7 @@ public class TaskControllerImpl implements ITaskController<TaskDto> {
         }
     }
 
+    // Update
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<TaskDto> updateTaskById(@PathVariable(name = "id") Long id, @Valid @RequestBody TaskDto taskDto) {
@@ -60,6 +79,7 @@ public class TaskControllerImpl implements ITaskController<TaskDto> {
         }
     }
 
+    // Delete
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<TaskDto> deleteTaskById(@PathVariable(name = "id") Long id) {
@@ -69,16 +89,4 @@ public class TaskControllerImpl implements ITaskController<TaskDto> {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
-    @Override
-    @PostMapping("/seed/{count}")
-    public ResponseEntity<String> seedData(@PathVariable(name = "count") Integer count) {
-        return ResponseEntity.ok(taskService.seedData(count));
-    }
-
-    @Override
-    @DeleteMapping("/delete/all")
-    public ResponseEntity<String> deleteAllTasks() {
-        return ResponseEntity.ok(taskService.deleteAll());
-    }
-}
+}// end class
