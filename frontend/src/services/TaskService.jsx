@@ -11,9 +11,15 @@ import { toast } from "react-toastify";
 // Function to handle Axios errors and display appropriate toast notifications
 const handleAxiosError = (error, defaultMessage) => {
   if (error.response) {
-    const { validationErrors } = error.response.data;
-    if (validationErrors && validationErrors.title) {
-      toast.error(`${validationErrors.title}`);
+    const { data } = error.response;
+    if (data) {
+      if (data.validationErrors && data.validationErrors.title) {
+        toast.error(`${data.validationErrors.title}`);
+      } else if (data.message) {
+        toast.error(`${data.message}`);
+      } else {
+        toast.error(defaultMessage);
+      }
     } else {
       toast.error(defaultMessage);
     }
